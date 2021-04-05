@@ -17,6 +17,8 @@ func MapFiles() []string {
 		root = os.Getenv("HOME")
 	}
 
+	root += "/Downloads/Test"
+
 	error := filepath.WalkDir(root, func(path string, entry fs.DirEntry, err error) error {
 		if err != nil {
 			return err
