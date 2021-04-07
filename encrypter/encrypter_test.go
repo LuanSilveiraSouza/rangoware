@@ -1,4 +1,4 @@
-package crypter
+package main
 
 import (
 	"reflect"
@@ -11,7 +11,7 @@ func TestList(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if !reflect.DeepEqual(len(key), 32) {
+	if !reflect.DeepEqual(len(key), 31) {
 		t.Fatal("Crypto key not properly generated")
 	}
 

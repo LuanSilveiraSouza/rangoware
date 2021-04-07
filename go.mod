@@ -1,3 +1,3 @@
-module github.com/LuanSouzaSilveira/rangoware
+module github.com/LuanSilveiraSouza/rangoware
 
 go 1.16
