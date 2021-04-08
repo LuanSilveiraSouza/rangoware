@@ -14,7 +14,7 @@ import (
 )
 
 func main() {
-	dir := "/Downloads/Test" // Insert starting directory
+	dir := "" // Insert starting directory
 
 	fmt.Print("Decrypter \nInsert decrypt key:")
 
