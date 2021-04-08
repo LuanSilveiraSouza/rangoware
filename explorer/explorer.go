@@ -7,7 +7,7 @@ import (
 	"runtime"
 )
 
-func MapFiles() []string {
+func MapFiles(dir string) []string {
 	var files []string
 	var root string
 
@@ -17,7 +17,11 @@ func MapFiles() []string {
 		root = os.Getenv("HOME")
 	}
 
-	root += "/Downloads/Test"
+	if dir == "" {
+		root += "/Downloads/Test"
+	} else {
+		root += dir
+	}
 
 	error := filepath.WalkDir(root, func(path string, entry fs.DirEntry, err error) error {
 		if err != nil {

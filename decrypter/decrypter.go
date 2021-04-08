@@ -14,6 +14,8 @@ import (
 )
 
 func main() {
+	dir := "/Downloads/Test" // Insert starting directory
+
 	fmt.Print("Decrypter \nInsert decrypt key:")
 
 	reader := bufio.NewReader(os.Stdin)
@@ -28,7 +30,7 @@ func main() {
 		fmt.Println("Wrong key.")
 	} else {
 
-		files := explorer.MapFiles()
+		files := explorer.MapFiles(dir)
 
 		for _, v := range files {
 			file, err := ioutil.ReadFile(v)

